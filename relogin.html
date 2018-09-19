@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+
+    * {
+      font-family:Roboto,sans-serif;
+    }
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      height: 40px;
+      padding: 12px 20px;
+      margin: 4px 0;
+      box-sizing: border-box;
+      border: 1px solid rgb(114, 109, 100);
+      border-color:rgb(114, 109, 100);
+      outline: none;
+      border-radius: 5px;
+      max-width: 350px;
+      min-width: 250px;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+      background-color: #f9ead9;
+    }
+
+    div.formblock {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 8px 8px 8px;
+      box-sizing: border-box;
+      border: 1px solid rgb(114, 109, 100);
+      border-color: rgb(114, 109, 100);
+      outline: 2px;
+      border-radius: 5px;
+      max-width: 400px;
+      min-width: 350px;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+    input[type=button],
+    input[type=submit],
+    input[type=reset] {
+      background-color: white;
+      border: 2px solid #e08c2c;
+      color: #e08c2c;
+      padding: 10px 23px;
+      margin: 4px;
+      cursor: pointer;
+      border-radius: 7px;
+      font-family: Arial;
+      font-size: 17px;
+      text-decoration: bold;
+      max-width: 200px;
+      min-width: 150px;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    }
+
+    input[type=submit]:hover {
+      background-color: #f3c59b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='formblock'>
+    <form method="POST" action="/verify">
+
+      <div>
+        <h1 style='color: #555'>Login or Register</h1>
+      </div>
+
+      <div>
+        <input id="username" name="username" type="text" placeholder="enter user name">
+        <p  style="color: #e08c2c; line-height:0px;text-align: right;font-size: 14px">No spaces or special charactors</p>
+      </div>
+<br />
+      <div>
+        <input id="password" name="password" type="password" placeholder="password">
+        <p  style="color: #e02c4a; line-height:0px;text-align: right;font-size: 14px">username/password does not match</p>
+      </div>
+<br />
+      <div>
+        <input type='submit' id="submit" value='Login' />
+      </div>
+
+    </form>
+  </div>
+</body>
+
+</html>

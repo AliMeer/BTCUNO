@@ -1,0 +1,35 @@
+<form class="form-horizontal"  method="POST" action="/verify">
+  <fieldset>
+  
+  <!-- Form Name -->
+  <legend>Login</legend>
+  
+  <!-- Text input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="textinput">User Name</label>  
+    <div class="col-md-4">
+    <input id="username" name="username" type="text" placeholder="enter user name" class="form-control input-md" required="">
+    <span class="help-block">no spaces no special charactors</span>  
+    </div>
+  </div>
+  
+  <!-- Password input-->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="password">Password</label>
+    <div class="col-md-4">
+      <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="">
+      
+    </div>
+  </div>
+  
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="submit"></label>
+    <div class="col-md-4">
+      <button id="submit" name="submit" class="btn btn-primary">Login</button>
+    </div>
+  </div>
+  
+  </fieldset>
+  </form>
+  
