@@ -18,7 +18,7 @@ var shares = secrets.share(secrets.str2hex(mnemonic), n, threshold)
 for(i=0;i<n;i++)    {
     console.log(`\nshare ${i+1}, Hexadecimal: ` + shares[i]);
     console.log(`\nshare ${i+1}, Hexadecmal length: ` + (shares[i]).length);
+    //Converting to 16bit charactor string
     console.log(`\nshare ${i+1}, 16 bit string: ` + secrets.hex2str(shares[i]));
     console.log(`\nshare ${i+1}, 16 bit string length: ` + (secrets.hex2str(shares[i])).length);
-    
 }
