@@ -1,14 +1,19 @@
-
+var bip39 = require('bip39');
+var crypto = require('crypto');
 var secrets = require('secrets.js-grempe');
-import bip39 from "bip39";
-import crypto from "crypto";
-import secrets from "secrets.js-grempe";
-
+var secrets = require('secrets.js-grempe');
 
 console.clear()
 
 //generate mnemomic
 var mnemonic = bip39.generateMnemonic(256)
+var cipherSpec = {
+    algorithm: "aes-192-cbc",
+    salt: "bithyeSalt", // NOTE: The salt should be as unique as possible. It is recommended that a salt is random and at least 16 bytes long
+    keyLength: 24,
+    iv: Buffer.alloc( 16, 0 ),
+  };
+
 console.log(`\n\n24 word mnemonic: ` + mnemonic);
 console.log(`\nCharactor length of mnemonic: ${mnemonic.length}`)
 //converting to hex
@@ -68,7 +73,7 @@ var n=5
     }
   }
 
-   validateDecryption = ( decryptedShare, existingShares: any[] = [] ) => {
+   validateDecryption = ( decryptedShare, existingShares) => {
     if ( decryptedShare.meta.walletId === getWalletId() ) {
       throw new Error( "You're not allowed to be your own trusted party" );
     }
@@ -94,7 +99,7 @@ var n=5
   }
 
    initializeHealthcheck = async ( encryptedShares ) => {
-    const shareIDs[] = [];
+    const shareIDs = [];
     for ( const encryptedShare of encryptedShares ) {
       shareIDs.push( getShareId( encryptedShare ) );
     }
@@ -142,6 +147,7 @@ var n=5
 
    encryptShares = ( shares, answers ) => {
     const key = generateKey( answers.join( "" ) );
+    var encryptedShares = [];
     // const key = crypto.scryptSync(
     //   intermediateKey,
     //   cipherSpec.salt,
@@ -199,7 +205,8 @@ var n=5
     return true;
   }
 
-  calculateChecksum = ( share, rotation: number = 2 ) => {
+  calculateChecksum = ( share, rotation) => {
+      rotation = 2;
     let temp = share;
     for ( let itr = 0; itr < rotation; itr++ ) {
       const hash = crypto.createHash( "sha512" );
@@ -220,8 +227,30 @@ var n=5
     return key.slice( key.length - cipherSpec.keyLength );
   }
 
+//Services Functions
 
-  
+
+getShares = () => {
+    answers = [makeRandomWord(6), makeRandomWord(7)]
+    const shares = generateShares();
+    const encryptedShares = encryptShares(shares, answers);
+    return encryptedShares;
+  }
+
+
+
+//Calling services functions
+
+console.log(`shares are `, getShares());
+
+function makeRandomWord(length) {
+    var OTP = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (var i = 0; i < length; i++)
+      OTP += possible.charAt(Math.floor(Math.random() * possible.length));
+    return OTP;
+  }
+
 
 console.log(`\nDeviding in to ${n} shares with a threshold of ${threshold}: `)
 var shares = secrets.share(secrets.str2hex(mnemonic), n, threshold)
